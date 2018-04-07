@@ -1,14 +1,14 @@
 {
-  "name": "storeable-react-redux",
+  "name": "storeable-common",
   "description": "Collection of react and redux components for Storeable.",
   "author": "Vince Chavez <vchavez92780@gmail.com> (http://github.com/pcs2112)",
   "license": "MIT",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Storeable/storeable-react-redux"
+    "url": "https://github.com/Storeable/storeable-common"
   },
-  "homepage": "https://github.com/Storeable/storeable-react-redux",
+  "homepage": "https://github.com/Storeable/storeable-common",
   "keywords": [
     "React",
     "Components",
@@ -21,18 +21,19 @@
     "build:lib": "babel src --out-dir lib"
   },
   "dependencies": {
+    "javascript-utils": "git+https://github.com/pcs2112/javascript-utils.git",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-transition-group": "^2.3.0-beta.0",
-    "semantic-ui-react": "^0.79.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.3.0-beta.0",
     "redux": "^3.0.4",
-    "javascript-utils": "git+https://github.com/pcs2112/javascript-utils.git"
+    "redux-form": "^7.3.0",
+    "semantic-ui-react": "^0.79.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
