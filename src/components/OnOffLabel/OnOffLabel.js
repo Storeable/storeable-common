@@ -6,10 +6,10 @@ const OnOffLabel = ({
   on,
   onText,
   offText,
-  onColor = '#57d500',
-  offColor = '#ff2e00',
-  hideOnOff = false,
-  emptyText = 'N/A'
+  onColor,
+  offColor,
+  hideOnOff,
+  emptyText
 }) => {
   if (isEmpty(onText)) {
     if (hideOnOff) {
@@ -26,7 +26,7 @@ const OnOffLabel = ({
       }}
       >
         &#x25cf;
-      </span>{' '}{on ? onText : offText}
+      </span>{' '}{(on ? onText : offText)}
     </div>
   );
 };
@@ -39,6 +39,15 @@ OnOffLabel.propTypes = {
   offColor: PropsTypes.string,
   hideOnOff: PropsTypes.bool,
   emptyText: PropsTypes.string
+};
+
+OnOffLabel.defaultProps = {
+  onText: '',
+  offText: '',
+  onColor: '#57d500',
+  offColor: '#ff2e00',
+  hideOnOff: false,
+  emptyText: 'N/A'
 };
 
 export default OnOffLabel;
