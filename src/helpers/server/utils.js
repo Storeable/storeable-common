@@ -21,3 +21,11 @@ export const buildSequelizeValidationError = (attr, message) => ({
  * @returns {String}
  */
 export const encryptString = value => crypto.createHash('sha1').update(value).digest('base64');
+
+/**
+ * Checks if a password matches the encrypted password.
+ *
+ * @param {String} encryptedPassword
+ * @param {String} rawPassword
+ */
+export const isPasswordValid = (encryptedPassword, rawPassword) => encryptedPassword === encryptString(rawPassword);
