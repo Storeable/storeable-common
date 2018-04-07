@@ -1,5 +1,6 @@
 import React from 'react';
 import PropsTypes from 'prop-types';
+import { isEmpty } from 'javascript-utils/lib/utils';
 
 const OnOffLabel = ({
   on,
@@ -10,7 +11,7 @@ const OnOffLabel = ({
   hideOnOff = false,
   emptyText = 'N/A'
 }) => {
-  if (!onText) {
+  if (isEmpty(onText)) {
     if (hideOnOff) {
       return null;
     }
