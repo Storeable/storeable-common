@@ -4,6 +4,6 @@ export const ACTIVE = 3;
 
 export const listingStatuses = {
   1: 'Draft',
-  2: 'Condo',
-  3: 'Apartment'
+  2: 'Inactive',
+  3: 'Active'
 };
