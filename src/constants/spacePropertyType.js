@@ -7,3 +7,9 @@ export const spacePropertyTypes = {
   2: 'Condo',
   3: 'Apartment'
 };
+
+export const selectSpacePropertyTypes = [
+  { value: 'Home', id: 1 },
+  { value: 'Condo', id: 2 },
+  { value: 'Apartment', id: 3 }
+];
