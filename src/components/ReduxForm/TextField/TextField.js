@@ -22,7 +22,7 @@ const TextField = ({
     <Input
       {...input}
       {...rest}
-      defaultValue={defaultValue}
+      value={defaultValue}
     />
     {touched && error ? (
       <Label basic color="red" pointing>
