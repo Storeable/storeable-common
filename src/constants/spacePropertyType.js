@@ -9,7 +9,7 @@ export const spacePropertyTypes = {
 };
 
 export const selectSpacePropertyTypes = [
-  { value: 'Home', id: 1 },
-  { value: 'Condo', id: 2 },
-  { value: 'Apartment', id: 3 }
+  { text: 'Home', value: 1 },
+  { text: 'Condo', value: 2 },
+  { text: 'Apartment', value: 3 }
 ];
