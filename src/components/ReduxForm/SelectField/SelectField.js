@@ -25,7 +25,7 @@ const SelectField = ({
       options={options}
       onChange={(event, data) => input.onChange(data.value)}
       {...custom}
-    >{input.value}
+    >input.value
     </Select>
     {touched && error ? (
       <Label basic color="red" pointing>
