@@ -22,11 +22,11 @@ const SelectField = ({
     <Select
       search
       value={input.value}
-      label={input.value}
       options={options}
       onChange={(event, data) => input.onChange(data.value)}
       {...custom}
-    />
+    >{input.value}
+    </Select>
     {touched && error ? (
       <Label basic color="red" pointing>
         {error}
