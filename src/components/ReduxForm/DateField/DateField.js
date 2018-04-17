@@ -23,7 +23,7 @@ const DateField = ({
       {...input}
       {...rest}
       type="date"
-      value={initialValue}
+      defaultValue={initialValue}
     />
     {touched && error ? (
       <Label basic color="red" pointing>
