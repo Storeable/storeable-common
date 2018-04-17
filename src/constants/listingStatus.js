@@ -7,3 +7,9 @@ export const listingStatuses = {
   2: 'Inactive',
   3: 'Active'
 };
+
+export const selectListingStatuses = [
+  { text: 'Draft', value: 1 },
+  { text: 'Inactive', value: 2 },
+  { text: 'Active', value: 3 }
+];

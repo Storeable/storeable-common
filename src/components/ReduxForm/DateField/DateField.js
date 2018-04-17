@@ -5,7 +5,6 @@ import { fieldProps } from '../FieldPropTypes';
 const DateField = ({
   input,
   label,
-  initialValue,
   required,
   width,
   inline,
@@ -23,7 +22,6 @@ const DateField = ({
       {...input}
       {...rest}
       type="date"
-      defaultValue={initialValue}
     />
     {touched && error ? (
       <Label basic color="red" pointing>

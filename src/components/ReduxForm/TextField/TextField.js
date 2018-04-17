@@ -5,7 +5,6 @@ import { fieldProps } from '../FieldPropTypes';
 const TextField = ({
   input,
   label,
-  initialValue,
   required,
   width,
   inline,
@@ -22,7 +21,6 @@ const TextField = ({
     <Input
       {...input}
       {...rest}
-      defaultValue={initialValue}
     />
     {touched && error ? (
       <Label basic color="red" pointing>
