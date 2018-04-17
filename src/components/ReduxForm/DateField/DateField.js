@@ -22,6 +22,7 @@ const DateField = ({
     <Input
       {...input}
       {...rest}
+      type="date"
       value={initialValue}
     />
     {touched && error ? (
