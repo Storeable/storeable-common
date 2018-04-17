@@ -21,7 +21,6 @@ const DateField = ({
     <Input
       {...input}
       {...rest}
-      type="date"
     />
     {touched && error ? (
       <Label basic color="red" pointing>
