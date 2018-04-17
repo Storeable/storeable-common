@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Label, Input } from 'semantic-ui-react';
+import { Form, Label } from 'semantic-ui-react';
 import DateTimePicker from 'react-widgets/lib/DateTimePicker';
 import { fieldProps } from '../FieldPropTypes';
 
@@ -26,11 +26,7 @@ const DateField = ({
       format="DD MMM YYYY"
       time={false}
       value={!initialValue ? null : new Date(initialValue)}
-    />
-    <Input
-      {...input}
       {...rest}
-      value={initialValue}
     />
     {touched && error ? (
       <Label basic color="red" pointing>
