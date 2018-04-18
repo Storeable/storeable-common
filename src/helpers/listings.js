@@ -2,6 +2,9 @@ import { isNumber } from 'javascript-utils/lib/number';
 import { isEmpty } from 'javascript-utils/lib/utils';
 import { arrayUnique } from 'javascript-utils/lib/array';
 import { rtrim, shorten } from 'javascript-utils/lib/string';
+import _ from 'lodash';
+import { normalizeInputToInteger } from 'javascript-utils/src/number';
+import { formatCurrency } from 'javascript-utils/src/format';
 import { ACTIVE } from '../constants/listingStatus';
 import { LISTING_FEE, INSURANCE, fees } from '../constants/fees';
 
@@ -184,4 +187,69 @@ export const metaKeywords = (spaceFeatures, spacePropertyType, spaceType) => {
   });
 
   return keywords.join(', ');
+};
+
+/**
+ * Calulates the price of all the space Services Available
+ *
+ * @param {Array} spaceServices
+ * @returns {Number}
+ */
+export const calculateSpaceServicePrice = (spaceServices) => {
+  if (!_.isEmpty(spaceServices)) {
+    let total = 0.00;
+    spaceServices.forEach((service) => { total += parseFloat(service.price); });
+    return total;
+  }
+  return 0.00;
+};
+
+/**
+ * Calulates the Listing Price
+ *
+ * @param {Object} listing
+ * @returns {Number}
+ */
+export const calculateListingPrice = (listing) => {
+  const listingPrice = normalizeInputToInteger(listing.price);
+  const spaceTypePrice = normalizeInputToInteger(listing.spaceType.price);
+  const servicesPrice = normalizeInputToInteger(calculateSpaceServicePrice(listing.spaceServicesPrices));
+  const total = listingPrice + spaceTypePrice + servicesPrice;
+  return formatCurrency(total);
+};
+
+/**
+ * Calulates the Total Sq Footage of a Listing
+ *
+ * @param {Object} listing
+ * @returns {Number}
+ */
+export const calculateTotalSqFootage = (listing) => {
+  const { width, length } = listing;
+  return (width * length);
+};
+
+/**
+ * Calulates the Available Sq Footage of a Listing
+ *
+ * @param {Object} listing
+ * @returns {Number}
+ */
+export const calculateSqFootageAvailable = (listing) => {
+  const totalSqFootage = calculateTotalSqFootage(listing);
+  const { reservations } = listing;
+
+  if (_.isEmpty(reservations)) {
+    return totalSqFootage;
+  }
+  const validReservations = reservations.filter(reservation => reservation.statusId <= 2);
+  if (!_.isEmpty(validReservations)) {
+    let sqFootageUsed = 0;
+    validReservations.forEach((reservation) => {
+      const { length, width } = reservation;
+      sqFootageUsed += (length * width);
+    });
+    return (totalSqFootage - sqFootageUsed);
+  }
+  return totalSqFootage;
 };
