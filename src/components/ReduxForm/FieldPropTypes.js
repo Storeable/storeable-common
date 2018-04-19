@@ -28,6 +28,6 @@ export const optionsFieldProps = {
   ...fieldProps,
   options: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string,
-    value: PropTypes.string
+    value: PropTypes.number
   }))
 };
