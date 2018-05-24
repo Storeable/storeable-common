@@ -3,12 +3,12 @@ export const INSURANCE = 2;
 
 export const fees = {
   [LISTING_FEE]: {
-    id: 1,
+    id: LISTING_FEE,
     name: 'Listing Fee',
     price: 15
   },
   [INSURANCE]: {
-    id: 2,
+    id: INSURANCE,
     name: 'Insurance',
     price: 5
   }
