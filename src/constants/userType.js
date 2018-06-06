@@ -1,9 +1,12 @@
+export const ADMIN = 1;
+export const CUSTOMER = 2;
+
 export const userTypes = {
-  1: 'Admin',
-  2: 'Customer'
+  [ADMIN]: 'Admin',
+  [CUSTOMER]: 'Customer'
 };
 
 export const selectUserTypes = [
-  { text: 'Admin', value: 1 },
-  { text: 'Customer', value: 2 }
+  { text: 'Admin', value: ADMIN },
+  { text: 'Customer', value: CUSTOMER }
 ];

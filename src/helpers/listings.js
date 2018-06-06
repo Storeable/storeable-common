@@ -1,10 +1,8 @@
+import _ from 'lodash';
 import { isNumber } from 'javascript-utils/lib/number';
 import { isEmpty } from 'javascript-utils/lib/utils';
 import { arrayUnique } from 'javascript-utils/lib/array';
 import { rtrim, shorten } from 'javascript-utils/lib/string';
-import _ from 'lodash';
-import { normalizeInputToInteger } from 'javascript-utils/src/number';
-import { formatCurrency } from 'javascript-utils/src/format';
 import { ACTIVE } from '../constants/listingStatus';
 import { LISTING_FEE, INSURANCE, fees } from '../constants/fees';
 
@@ -190,36 +188,38 @@ export const metaKeywords = (spaceFeatures, spacePropertyType, spaceType) => {
 };
 
 /**
- * Calulates the price of all the space Services Available
+ * Calculates the price of all the space Services Available.
  *
  * @param {Array} spaceServices
  * @returns {Number}
  */
 export const calculateSpaceServicePrice = (spaceServices) => {
+  let total = 0;
   if (!_.isEmpty(spaceServices)) {
-    let total = 0.00;
-    spaceServices.forEach((service) => { total += parseFloat(service.price); });
-    return total;
+    spaceServices.forEach((service) => {
+      total += parseFloat(service.price);
+    });
   }
-  return 0.00;
+
+  return total;
 };
 
 /**
- * Calulates the Listing Price
+ * Calculates the Listing Price.
  *
  * @param {Object} listing
  * @returns {Number}
  */
 export const calculateListingPrice = (listing) => {
-  const listingPrice = normalizeInputToInteger(listing.price);
-  const spaceTypePrice = normalizeInputToInteger(listing.spaceType.price);
-  const servicesPrice = normalizeInputToInteger(calculateSpaceServicePrice(listing.spaceServicesPrices));
-  const total = listingPrice + spaceTypePrice + servicesPrice;
-  return formatCurrency(total);
+  const listingPrice = listing.price;
+  const spaceTypePrice = listing.spaceType.price;
+  const servicesPrice = calculateSpaceServicePrice(listing.spaceServicesPrices);
+
+  return listingPrice + spaceTypePrice + servicesPrice;
 };
 
 /**
- * Calulates the Total Sq Footage of a Listing
+ * Calculates the Total Sq Footage of a Listing.
  *
  * @param {Object} listing
  * @returns {Number}
@@ -230,7 +230,7 @@ export const calculateTotalSqFootage = (listing) => {
 };
 
 /**
- * Calulates the Available Sq Footage of a Listing
+ * Calculates the Available Sq Footage of a Listing.
  *
  * @param {Object} listing
  * @returns {Number}
@@ -242,6 +242,7 @@ export const calculateSqFootageAvailable = (listing) => {
   if (_.isEmpty(reservations)) {
     return totalSqFootage;
   }
+
   const validReservations = reservations.filter(reservation => reservation.statusId <= 2);
   if (!_.isEmpty(validReservations)) {
     let sqFootageUsed = 0;
@@ -249,7 +250,9 @@ export const calculateSqFootageAvailable = (listing) => {
       const { length, width } = reservation;
       sqFootageUsed += (length * width);
     });
+
     return (totalSqFootage - sqFootageUsed);
   }
+
   return totalSqFootage;
 };
