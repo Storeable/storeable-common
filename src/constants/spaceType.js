@@ -14,5 +14,5 @@ export const selectSpaceTypes = [
   { text: 'Storage Indoor', value: STORAGE_INDOOR },
   { text: 'Storage Outdoor', value: STORAGE_OUTDOOR },
   { text: 'Parking Indoor', value: PARKING_INDOOR },
-  { text: 'Parking Outdoor', value: [PARKING_OUTDOOR] }
+  { text: 'Parking Outdoor', value: PARKING_OUTDOOR }
 ];
