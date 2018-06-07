@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Label, Checkbox } from 'semantic-ui-react';
 import { isEmpty } from 'javascript-utils/lib/utils';
 import { optionsFieldProps } from '../FieldPropTypes';
 
 class CheckBoxGroupField extends Component {
   static propTypes = {
-    ...optionsFieldProps
+    ...optionsFieldProps,
+    inline: PropTypes.bool
+  };
+
+  static defaultProps = {
+    inline: false
   };
 
   getCurrentValues = () => {
@@ -20,7 +26,7 @@ class CheckBoxGroupField extends Component {
     return Array.isArray(previousValues) ? [...previousValues] : [previousValues];
   };
 
-  handleOnChange = (checked, value) => {
+  handleOnChange = ({ checked, value }) => {
     const { onChange } = this.props.input;
     const values = this.getCurrentValues();
 
@@ -41,13 +47,14 @@ class CheckBoxGroupField extends Component {
       label,
       required,
       meta: { touched, error },
-      options
+      options,
+      inline
     } = this.props;
 
     const values = this.getCurrentValues();
 
     return (
-      <Form.Group>
+      <Form.Group inline={inline}>
         {label &&
           <Form.Field
             error={!!(touched && error)}
@@ -67,7 +74,8 @@ class CheckBoxGroupField extends Component {
               <Checkbox
                 label={optionLabel}
                 checked={optionChecked}
-                onClick={(event, data) => this.handleOnChange(data.checked, optionValue)}
+                value={optionValue}
+                onClick={this.handleOnChange}
               />
             </Form.Field>
           );
