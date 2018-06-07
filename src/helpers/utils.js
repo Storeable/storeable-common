@@ -1,5 +1,7 @@
 import { SubmissionError } from 'redux-form';
 
+let currentHtmlId = 0;
+
 /**
  * Catch redux-form validation errors.
  * @param {Object} error
@@ -12,4 +14,18 @@ export const catchValidation = (error) => {
   }
 
   throw new SubmissionError({ _error: error.message });
+};
+
+/**
+ * Generates a unique html id.
+ * @param {String} prefix
+ * @returns {String}
+ */
+export const generateHtmlId = (prefix = 'yt') => `${prefix}-${currentHtmlId++}`;
+
+/**
+ * Resets the html id counter,
+ */
+export const resetHtmlIdCounter = () => {
+  currentHtmlId = 0;
 };

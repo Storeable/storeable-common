@@ -51,7 +51,7 @@ class CheckBoxGroupField extends Component {
     const values = this.getCurrentValues();
 
     return (
-      <Form.Group inline={grouped}>
+      <Form.Group grouped={grouped}>
         {label &&
           <Form.Field
             error={!!(touched && error)}
