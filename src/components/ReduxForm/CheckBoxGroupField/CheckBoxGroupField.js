@@ -53,17 +53,18 @@ class CheckBoxGroupField extends Component {
             <label>{label}</label>
           </Form.Field>
         }
-        {options.map((option) => {
+        {options.map((option, i) => {
           const optionLabel = option.text;
           const optionValue = option.value;
           const optionChecked = values.indexOf(optionValue) > -1;
+          const key = `key${i}`;
 
           return (
-            <Form.Field>
+            <Form.Field key={key}>
               <Checkbox
                 label={optionLabel}
                 checked={optionChecked}
-                onClick={event => this.handleChange(event, optionValue)}
+                onClick={event => this.handleOnChange(event, optionValue)}
               />
             </Form.Field>
           );
