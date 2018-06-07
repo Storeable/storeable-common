@@ -7,11 +7,11 @@ import { optionsFieldProps } from '../FieldPropTypes';
 class CheckBoxGroupField extends Component {
   static propTypes = {
     ...optionsFieldProps,
-    inline: PropTypes.bool
+    grouped: PropTypes.bool
   };
 
   static defaultProps = {
-    inline: false
+    grouped: true
   };
 
   getCurrentValues = () => {
@@ -26,18 +26,15 @@ class CheckBoxGroupField extends Component {
     return Array.isArray(previousValues) ? [...previousValues] : [previousValues];
   };
 
-  handleOnChange = ({ checked, value }) => {
+  handleOnChange = (event, { checked, value }) => {
     const { onChange } = this.props.input;
     const values = this.getCurrentValues();
 
-    console.log(checked);
     if (checked) {
       values.push(value);
     } else {
       values.splice(values.indexOf(value), 1);
     }
-
-    console.log(values);
 
     onChange(values);
   };
@@ -48,13 +45,13 @@ class CheckBoxGroupField extends Component {
       required,
       meta: { touched, error },
       options,
-      inline
+      grouped
     } = this.props;
 
     const values = this.getCurrentValues();
 
     return (
-      <Form.Group inline={inline}>
+      <Form.Group inline={grouped}>
         {label &&
           <Form.Field
             error={!!(touched && error)}
