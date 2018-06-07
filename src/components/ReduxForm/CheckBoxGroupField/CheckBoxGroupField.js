@@ -20,15 +20,18 @@ class CheckBoxGroupField extends Component {
     return Array.isArray(previousValues) ? [...previousValues] : [previousValues];
   };
 
-  handleOnChange = (event, value) => {
+  handleOnChange = (checked, value) => {
     const { onChange } = this.props.input;
     const values = this.getCurrentValues();
 
-    if (event.target.checked) {
+    console.log(checked);
+    if (checked) {
       values.push(value);
     } else {
       values.splice(values.indexOf(value), 1);
     }
+
+    console.log(values);
 
     onChange(values);
   };
@@ -64,7 +67,7 @@ class CheckBoxGroupField extends Component {
               <Checkbox
                 label={optionLabel}
                 checked={optionChecked}
-                onClick={event => this.handleOnChange(event, optionValue)}
+                onClick={(event, data) => this.handleOnChange(data.checked, optionValue)}
               />
             </Form.Field>
           );
