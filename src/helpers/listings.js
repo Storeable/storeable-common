@@ -256,3 +256,18 @@ export const calculateSqFootageAvailable = (listing) => {
 
   return totalSqFootage;
 };
+
+/**
+ * Returns a map of prices by space feature.
+ *
+ * @param {Array} spaceFeatures
+ * @returns {Object}
+ */
+export const getPricesBySpaceFeature = (spaceFeatures) => {
+  const pricesBySpaceFeature = {};
+  spaceFeatures.forEach((spaceFeature) => {
+    pricesBySpaceFeature[spaceFeature.id] = spaceFeature.price;
+  });
+
+  return pricesBySpaceFeature;
+};
