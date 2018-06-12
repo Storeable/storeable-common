@@ -271,3 +271,14 @@ export const getPricesBySpaceFeature = (spaceFeatures) => {
 
   return pricesBySpaceFeature;
 };
+
+/**
+ * Returns a map of prices by space feature.
+ *
+ * @param {String} basePrice
+ * * @param {String} length
+ * * @param {String} width
+ * @returns {Object}
+ */
+export const calculateTotal = (basePrice, length, width) => (Number(basePrice) + Number(length) + Number(width));
+
