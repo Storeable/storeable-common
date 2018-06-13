@@ -9,17 +9,19 @@ import { LISTING_FEE, INSURANCE, fees } from '../constants/fees';
 /**
  * Returns the insurance fee.
  *
+ * @param {Number|undefined} fee
  * @returns {Number}
  */
-export const getInsuranceFee = () => fees[INSURANCE].price;
+export const getInsuranceFee = (fee = undefined) => fee || fees[INSURANCE].price;
 
 /**
  * Returns the listing fee.
  *
  * @param {Number} total
+ * @param {Number|undefined} fee
  * @returns {Number}
  */
-export const getListingFee = total => (fees[LISTING_FEE].price / 100) * total;
+export const getListingFee = (total, fee = undefined) => ((fee || fees[LISTING_FEE].price) / 100) * total;
 
 /**
  * Returns the base quare feet cost for a listing.
@@ -74,8 +76,11 @@ export const getTotalCost = (
   }
 
   if (includeFees) {
+    const listingFee = typeof includeFees === 'object' ? includeFees.listingFee : undefined;
+    const insuranceFee = typeof includeFees === 'object' ? includeFees.insuranceFee : undefined;
+
     // Add the insurance fee and listing fee percentage
-    total += getListingFee(total) + getInsuranceFee();
+    total += getListingFee(total, listingFee) + getInsuranceFee(insuranceFee);
   }
 
   return total;
