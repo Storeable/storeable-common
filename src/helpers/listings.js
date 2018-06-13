@@ -12,7 +12,17 @@ import { LISTING_FEE, INSURANCE, fees } from '../constants/fees';
  * @param {Number|undefined} fee
  * @returns {Number}
  */
-export const getInsuranceFee = (fee = undefined) => fee || fees[INSURANCE].price;
+export const getInsuranceFee = (fee = undefined) => {
+  if (typeof fee === 'undefined') {
+    return fees[INSURANCE].price;
+  }
+
+  if (!isNumber(fee)) {
+    return 0;
+  }
+
+  return parseFloat(fee);
+};
 
 /**
  * Returns the listing fee.
@@ -21,7 +31,23 @@ export const getInsuranceFee = (fee = undefined) => fee || fees[INSURANCE].price
  * @param {Number|undefined} fee
  * @returns {Number}
  */
-export const getListingFee = (total, fee = undefined) => ((fee || fees[LISTING_FEE].price) / 100) * total;
+export const getListingFee = (total, fee = undefined) => {
+  let normalizedFee;
+  if (typeof fee === 'undefined') {
+    normalizedFee = fees[LISTING_FEE].price;
+  }
+
+  if (!isNumber(normalizedFee)) {
+    return 0;
+  }
+
+  normalizedFee = parseFloat(fee);
+  if (normalizedFee <= 0) {
+    return 0;
+  }
+
+  return (normalizedFee / 100) * total;
+};
 
 /**
  * Returns the base quare feet cost for a listing.
@@ -36,10 +62,10 @@ export const getBaseSqFtCost = (sqFtCost, spaceTypeSqFtCost, features) => {
 
   // Add the features
   if (isNumber(features)) {
-    total += features;
+    total += parseFloat(features);
   } else if (Array.isArray(features) && features.length > 0) {
     features.forEach((feature) => {
-      total += feature.price;
+      total += parseFloat(feature.price);
     });
   }
 
@@ -71,7 +97,7 @@ export const getTotalCost = (
   // Add the services
   if (Array.isArray(services) && services.length > 0) {
     services.forEach((service) => {
-      total += service.price;
+      total += parseFloat(service.price);
     });
   }
 
