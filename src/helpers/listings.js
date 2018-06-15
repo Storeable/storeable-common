@@ -32,16 +32,16 @@ export const getInsuranceFee = (fee = undefined) => {
  * @returns {Number}
  */
 export const getListingFee = (total, fee = undefined) => {
-  let normalizedFee;
-  if (typeof fee === 'undefined') {
-    normalizedFee = fees[LISTING_FEE].price;
+  let listingFee = fee;
+  if (typeof listingFee === 'undefined') {
+    listingFee = fees[LISTING_FEE].price;
   }
 
-  if (!isNumber(normalizedFee)) {
+  if (!isNumber(listingFee)) {
     return 0;
   }
 
-  normalizedFee = parseFloat(fee);
+  const normalizedFee = parseFloat(listingFee);
   if (normalizedFee <= 0) {
     return 0;
   }

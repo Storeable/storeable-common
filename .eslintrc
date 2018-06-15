@@ -24,7 +24,8 @@
     "id-length": [2, {"min": 1}],
     "no-var": 0,
     "no-plusplus": 0,
-    "max-len": ["error", 120]
+    "max-len": ["error", 120],
+    "jsx-a11y/label-has-for": 0
   },
   "plugins": [
     "react",
